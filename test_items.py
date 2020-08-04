@@ -1,12 +1,9 @@
 
-from selenium.webdriver.support.ui import Select
+import time
 
-def test_find_button(browser):
+def test_find_button_add_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     browser.get(link)
-    browser.implicitly_wait(7)
-
-    select = Select(browser.find_element_by_tag_name("select"))
-    select.select_by_value("es")
-    button = browser.find_element_by_class_name("btn-add-to-basket")
-    assert button == True,  "Караул, кнопку украли!"
+    time.sleep(10)
+    button = browser.find_elements_by_class_name("btn-add-to-basket")
+    assert len(button) == 1,  "OMG! Button was stolen!"
